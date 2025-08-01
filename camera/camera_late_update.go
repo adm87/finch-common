@@ -45,13 +45,15 @@ func (s *CameraLateUpdate) Update(entities []*ecs.Entity, t time.Time) error {
 		return errors.NewAmbiguousError("multiple camera entities found, expected only one")
 	}
 
-	if s.cameraEntity != nil && s.cameraEntity.ID() != entities[0].ID() {
+	if s.cameraEntity == nil || s.cameraEntity.ID() != entities[0].ID() {
 		s.CacheOperationComponents(entities[0])
 	}
 
 	if s.cameraComponent == nil || s.transformComponent == nil {
 		return errors.NewNotFoundError("cannot operate on camera without camera and transform components")
 	}
+
+	// TODO: Added matrix caching here so we don't have to recalculate it every frame there is no change to the camera.
 
 	zoom := s.cameraComponent.Zoom()
 	scale := s.transformComponent.Scale()
