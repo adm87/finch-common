@@ -1,6 +1,7 @@
 package camera
 
 import (
+	"github.com/adm87/finch-application/config"
 	"github.com/adm87/finch-common/transform"
 	"github.com/adm87/finch-core/ecs"
 	"github.com/adm87/finch-core/errors"
@@ -18,14 +19,16 @@ var (
 
 type CameraLateUpdate struct {
 	world              *ecs.World
+	window             *config.Window
 	cameraEntity       *ecs.Entity
 	cameraComponent    *CameraComponent
 	transformComponent *transform.TransformComponent
 }
 
-func NewCameraLateUpdate(world *ecs.World) *CameraLateUpdate {
+func NewCameraLateUpdate(world *ecs.World, window *config.Window) *CameraLateUpdate {
 	return &CameraLateUpdate{
-		world: world,
+		world:  world,
+		window: window,
 	}
 }
 
@@ -46,7 +49,9 @@ func (s *CameraLateUpdate) Update(entities []*ecs.Entity, t time.Time) error {
 	}
 
 	if s.cameraEntity == nil || s.cameraEntity.ID() != entities[0].ID() {
-		s.CacheOperationComponents(entities[0])
+		if err := s.CacheOperationComponents(entities[0]); err != nil {
+			return err
+		}
 	}
 
 	if s.cameraComponent == nil || s.transformComponent == nil {
@@ -56,17 +61,24 @@ func (s *CameraLateUpdate) Update(entities []*ecs.Entity, t time.Time) error {
 	// TODO: Added matrix caching here so we don't have to recalculate it every frame there is no change to the camera.
 
 	zoom := s.cameraComponent.Zoom()
+
 	scale := s.transformComponent.Scale()
+	origin := s.transformComponent.Origin()
 
 	scale.X = zoom
 	scale.Y = zoom
 
+	origin.X = float64(s.window.ScreenWidth) / 2
+	origin.Y = float64(s.window.ScreenHeight) / 2
+
 	s.transformComponent.SetScale(scale)
+	s.transformComponent.SetOrigin(origin)
 
 	invWorldMatrix := s.transformComponent.WorldMatrix()
 	invWorldMatrix.Invert()
 
 	s.world.SetView(invWorldMatrix)
+	s.cameraComponent.SetView(invWorldMatrix)
 
 	return nil
 }
