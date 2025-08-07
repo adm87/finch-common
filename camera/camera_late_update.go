@@ -78,7 +78,6 @@ func (s *CameraLateUpdate) Update(entities []*ecs.Entity, t time.Time) error {
 	invWorldMatrix.Invert()
 
 	s.world.SetView(invWorldMatrix)
-	s.cameraComponent.SetView(invWorldMatrix)
 
 	return nil
 }

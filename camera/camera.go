@@ -4,13 +4,11 @@ import (
 	"github.com/adm87/finch-core/ecs"
 	"github.com/adm87/finch-core/geometry"
 	"github.com/adm87/finch-core/hash"
-	"github.com/hajimehoshi/ebiten/v2"
 )
 
 var CameraComponentType = ecs.ComponentType(hash.GetHashFromType[CameraComponent]())
 
 type CameraComponent struct {
-	view ebiten.GeoM
 	size geometry.Point64
 	zoom float64
 }
@@ -53,12 +51,4 @@ func (c *CameraComponent) SetZoom(zoom float64) {
 		panic("zoom must be greater than 0")
 	}
 	c.zoom = zoom
-}
-
-func (c *CameraComponent) View() ebiten.GeoM {
-	return c.view
-}
-
-func (c *CameraComponent) SetView(view ebiten.GeoM) {
-	c.view = view
 }
