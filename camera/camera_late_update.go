@@ -6,7 +6,6 @@ import (
 	"github.com/adm87/finch-core/ecs"
 	"github.com/adm87/finch-core/errors"
 	"github.com/adm87/finch-core/hash"
-	"github.com/adm87/finch-core/time"
 )
 
 var (
@@ -40,7 +39,7 @@ func (s CameraLateUpdate) Filter() []ecs.ComponentType {
 	return CameraLateUpdateSystemFilter
 }
 
-func (s *CameraLateUpdate) Update(entities []*ecs.Entity, t time.Time) error {
+func (s *CameraLateUpdate) LateUpdate(entities []*ecs.Entity, deltaSeconds float64) error {
 	if len(entities) == 0 {
 		return nil
 	}
