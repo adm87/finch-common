@@ -2,10 +2,10 @@ package camera
 
 import (
 	"github.com/adm87/finch-application/config"
-	"github.com/adm87/finch-common/transform"
 	"github.com/adm87/finch-core/ecs"
 	"github.com/adm87/finch-core/errors"
 	"github.com/adm87/finch-core/hash"
+	"github.com/adm87/finch-core/transform"
 )
 
 var (
