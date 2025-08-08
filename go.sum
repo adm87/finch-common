@@ -1,7 +1,7 @@
 github.com/adm87/finch-application v0.0.0-20250801153755-bbb64430fb03 h1:F5pjTb7ests/A/Fs+T6slNXMbhPpCM0cXXGiOjqvXFk=
 github.com/adm87/finch-application v0.0.0-20250801153755-bbb64430fb03/go.mod h1:F95rqxi8QoyMvwREmb+h2PfWaJvQLuQ4zaBun0rXhkU=
-github.com/adm87/finch-core v0.0.0-20250801153353-57aa201f5405 h1:X4sklZlAH1PMlG86KyAXouapZIEcKUQMJFhZrn9AzgM=
-github.com/adm87/finch-core v0.0.0-20250801153353-57aa201f5405/go.mod h1:c/eoYUeq0263abZUDA+7LxxM3JxDzUuHFuygekg6DrI=
+github.com/adm87/finch-core v0.0.0-20250808133939-0f5b403eb0dd h1:eLS6Msj9Mwb+k+764vWmYcIFyH1vMrRN0yNpoin3hZc=
+github.com/adm87/finch-core v0.0.0-20250808133939-0f5b403eb0dd/go.mod h1:c/eoYUeq0263abZUDA+7LxxM3JxDzUuHFuygekg6DrI=
 github.com/ebitengine/gomobile v0.0.0-20240911145611-4856209ac325 h1:Gk1XUEttOk0/hb6Tq3WkmutWa0ZLhNn/6fc6XZpM7tM=
 github.com/ebitengine/gomobile v0.0.0-20240911145611-4856209ac325/go.mod h1:ulhSQcbPioQrallSuIzF8l1NKQoD7xmMZc5NxzibUMY=
 github.com/ebitengine/hideconsole v1.0.0 h1:5J4U0kXF+pv/DhiXt5/lTz0eO5ogJ1iXb8Yj1yReDqE=
