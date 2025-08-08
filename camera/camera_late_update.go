@@ -6,6 +6,7 @@ import (
 	"github.com/adm87/finch-core/errors"
 	"github.com/adm87/finch-core/hash"
 	"github.com/adm87/finch-core/transform"
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 var (
@@ -60,6 +61,15 @@ func (s *CameraLateUpdate) LateUpdate(entities []*ecs.Entity, deltaSeconds float
 	// TODO: Added matrix caching here so we don't have to recalculate it every frame there is no change to the camera.
 
 	zoom := s.cameraComponent.Zoom()
+
+	_, yoff := ebiten.Wheel()
+	if yoff != 0 {
+		zoom += yoff * 0.1
+		if zoom < 0.01 {
+			zoom = 0.01
+		}
+		s.cameraComponent.SetZoom(zoom)
+	}
 
 	scale := s.transformComponent.Scale()
 	origin := s.transformComponent.Origin()
