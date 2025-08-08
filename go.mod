@@ -4,7 +4,7 @@ go 1.24.3
 
 require github.com/adm87/finch-core v0.0.0-20250808133939-0f5b403eb0dd
 
-require github.com/hajimehoshi/ebiten/v2 v2.8.8 // indirect
+require github.com/hajimehoshi/ebiten/v2 v2.8.8
 
 require (
 	github.com/adm87/finch-application v0.0.0-20250801153755-bbb64430fb03
